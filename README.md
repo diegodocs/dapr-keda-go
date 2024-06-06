@@ -23,13 +23,13 @@ As a developer, I want to implement Distributed Architecture Solution :
 
 ![dapr](https://docs.dapr.io/images/overview.png)
 
-**[DAPR - Pros/Cons](dapr-pros-cons.md)**
+**[DAPR - Pros/Cons](./docs/dapr-pros-cons.md)**
 
 ## Kubernetes Event Driven Autoscaling - KEDA
 
 ![keda](https://keda.sh/img/keda-arch.png)
 
-**[KEDA  - Pros/Cons](keda-pros-cons.md)**
+**[KEDA  - Pros/Cons](./docs/keda-pros-cons.md)**
 
 ## Development Tools
 
