@@ -27,7 +27,7 @@ az account set --subscription <subscription-id>
 Create a resource group:
 
 ```sh
-az group create --name rgdev001 --location brazilsouth
+az group create --name <rg-name> --location brazilsouth
 ```
 
 ## 1. Create an AKS cluster and attach ACR
@@ -35,23 +35,23 @@ az group create --name rgdev001 --location brazilsouth
 Create an AKS cluster:
 
 ```sh
-az aks create --resource-group rgdev001 --name aksdev001 --node-count 2 --location brazilsouth --node-vm-size Standard_D4ds_v5 --enable-managed-identity --generate-ssh-keys --tier free 
+az aks create --resource-group <rg-name> --name <aks-name> --node-count 2 --location brazilsouth --node-vm-size Standard_D4ds_v5 --enable-managed-identity --generate-ssh-keys --tier free 
 ```
 
 Create an Container Registry:
 ```sh
-az acr create --name acrdev001br --resource-group rgdev001 --sku basic
+az acr create --name <acr-name> --resource-group <rg-name> --sku basic
 ```
 
 Attach the Container Registry to AKS:
 ```sh
-az aks update --name aksdev001 --resource-group rgdev001 --attach-acr acrdev001br
+az aks update --name <aks-name> --resource-group <rg-name> --attach-acr <acr-name>
 ```
 
 Get the access credentials for the AKS cluster:
 
 ```sh
-az aks get-credentials --resource-group rgdev001 --name aksdev001 --overwrite-existing
+az aks get-credentials --resource-group <rg-name> --name <aks-name> --overwrite-existing
 ```
 
 Verify the connection to the cluster:
@@ -134,7 +134,7 @@ helm uninstall rabbitmq-cluster-operator -n rabbitmq-system
 Delete all Azure resources:
 
 ```sh
-az aks delete --name aksdev001 --resource-group rgdev001
-az acr delete --name acrdev001br --resource-group rgdev001
-az group delete --name rgdev001
+az aks delete --name <aks-name> --resource-group <rg-name>
+az acr delete --name <acr-name> --resource-group <rg-name>
+az group delete --name <rg-name>
 ```
