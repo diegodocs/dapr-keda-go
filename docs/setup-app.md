@@ -82,8 +82,6 @@ Dapr dashboard available at http://localhost:8080
 
 ## 3. Testing the application
 
-### Building images
-
 ```sh
 # Reviewing Logs
 kubectl logs -f -l app=consumer1 --all-containers=true -n plant-trees
@@ -93,7 +91,7 @@ kubectl port-forward pod/producer1 8081 8081 -n plant-trees
 
 # Send post to producer app
 - POST -> http://localhost:8081/plant
-- Json Body: {"numberOfTrees":1}
+- Json Body: {"numberOfTrees":100}
 
 # Review pod instances and status
 kubectl get pod -l app=consumer1 -n plant-trees
