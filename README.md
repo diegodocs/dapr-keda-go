@@ -38,10 +38,11 @@ As a developer, I want to implement Distributed Architecture Solution :
 ## Development Tools
 
 - [Go 1.22.3](https://go.dev/dl/)
+- [Azure CLI](https://learn.microsoft.com/pt-br/cli/azure/install-azure-cli)
 - [Dapr CLI](https://docs.dapr.io/getting-started/install-dapr-cli/)
-- [kubectl](https://kubernetes.io/pt-br/docs/tasks/tools/)
-- [helm](https://github.com/helm/helm)
-- [git bash](https://git-scm.com/downloads)
+- [Kubectl](https://kubernetes.io/pt-br/docs/tasks/tools/)
+- [Helm CLI](https://github.com/helm/helm)
+- [GIT bash](https://git-scm.com/downloads)
 
 ## Setup your environment
 
