@@ -10,7 +10,6 @@ COPY go.* ./
 RUN go mod download
 
 COPY ./cmd/consumer  ./cmd/consumer 
-COPY ./internal ./internal
 
 RUN CGO_ENABLED=0 GOOS=linux GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o main -v -mod=readonly ./cmd/consumer 
 
