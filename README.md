@@ -12,7 +12,7 @@ This project cover concepts about Distributed Architecture combining follow tech
 - RabbitMq:(exchange, binding and queues)
 - Redis
   
-### Long Story Short
+## Long Story Short
 
 As a developer, I want to implement Distributed Architecture Solution :
 
