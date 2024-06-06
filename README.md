@@ -9,7 +9,7 @@ This project cover concepts about Distributed Architecture combining follow tech
 - Keda
 - Azure Kubernetes Service (AKS)
 
-## Long story short
+### Long Story Short
 
 As a developer, I want to implement Distributed Architecture Solution :
 
@@ -20,7 +20,7 @@ As a developer, I want to implement Distributed Architecture Solution :
   - easy/transparent troubleshooting
   - work with component abstraction
 - closed: (be careful)
-  - components high-coupled
+  - high-coupled components 
   - high dependencies of SDKs, 3rd party libraries and etc
 
 ## Distributed Application Runtime - DAPR
