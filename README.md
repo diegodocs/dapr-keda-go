@@ -13,11 +13,15 @@ This project cover concepts about Distributed Architecture combining follow tech
 
 As a developer, I want to implement Distributed Architecture Solution :
 
-- open to work with multiple languages/tech-stacks based on business context
-- keep code testable
-- keep ecosystem observable
-- easy/transparent troubleshooting
-- open for abstraction instead tech-stack high-coupling(SDKs, 3rd party libraries and etc )
+- open:
+  - work with multiple languages/tech-stacks based on business context
+  - testable code
+  - observable ecosystem
+  - easy/transparent troubleshooting
+  - work with component abstraction
+- closed: (be careful)
+  - components high-coupled
+  - high dependencies of SDKs, 3rd party libraries and etc
 
 ## Distributed Application Runtime - DAPR
 
