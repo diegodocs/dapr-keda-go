@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.consumer.name }}
+  labels:
+    app: {{ .Values.consumer.name }}
+spec:    
+  replicas: 0
+  selector:
+    matchLabels:
+      app: {{ .Values.consumer.name }} 
+  template:
+    metadata:
+      annotations:
+        {{- toYaml .Values.podAnnotations | nindent 8 }}        
+        dapr.io/app-id: {{ .Values.consumer.name }}
+        dapr.io/app-port: {{ .Values.consumer.port | quote}}
+      labels:       
+        app: {{ .Values.consumer.name }} 
+    spec:
+      containers:
+        - name: {{ .Values.consumer.name }}
+          image: "{{ .Values.image.repository }}/{{ .Values.consumer.image.name }}:{{ .Values.consumer.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}          
+          ports:
+            - containerPort: {{ .Values.consumer.port }}
+              name: app-http

@@ -1,0 +1,17 @@
+#RBMQ
+rabbitmq:
+  cluster:
+    name: rabbitmq-cluster    
+  exchange:
+    type: topic
+    name: events
+    autoDelete: false
+    durable: true
+  queue:
+    name: consumer1-events
+    type: quorum
+    autoDelete: false
+    durable: true  
+  user:
+    name: "guest"
+    password: "guest"

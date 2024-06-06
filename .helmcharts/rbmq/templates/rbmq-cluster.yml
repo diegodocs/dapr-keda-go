@@ -1,0 +1,8 @@
+apiVersion: rabbitmq.com/v1beta1
+kind: RabbitmqCluster
+metadata:
+  name: {{ .Values.rabbitmq.cluster.name }}
+spec:
+  replicas: 1
+  service:
+    type: NodePort
