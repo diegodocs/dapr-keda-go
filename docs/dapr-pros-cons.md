@@ -8,7 +8,7 @@ Dapr provides a set of APIs that run as a sidecar process next to your applicati
 
 # Any language, any framework, anywhere
 
-![](https://docs.dapr.io/images/overview.png)
+![Dapr](https://docs.dapr.io/images/overview.png)
 
 ## Pros
 
@@ -22,4 +22,9 @@ Dapr provides a set of APIs that run as a sidecar process next to your applicati
 - You may need to learn and adopt new concepts and tools, such as Dapr components, sidecars, and CLI, to use Dapr effectively on Azure.
 - You may face some Limits and challenges, such as compatibility issues, performance overhead, and debugging difficulties, when using Dapr with some Azure services or features.
 - You may incur additional costs, such as storage, networking, and compute charges, depending on your Dapr usage and configuration.
-- Dapr extension for Azure Functions is in preview and it is only supported in Azure Container Apps environments. [Dapr Extension for Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-dapr?tabs=in-process%2Cpreview-bundle-v4x%2Cbicep1&pivots=programming-language-csharp)
+- Dapr extension for Azure Functions is in preview and it is only supported in Azure Container Apps environments.
+
+## References
+
+- [Dapr and service meshes](https://docs.dapr.io/concepts/service-mesh/)
+- [Dapr Extension for Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-dapr?tabs=in-process%2Cpreview-bundle-v4x%2Cbicep1&pivots=programming-language-csharp)
