@@ -127,8 +127,8 @@ helm uninstall plant-trees-app -n plant-trees
 helm uninstall keda-add-ons-http -n keda-system
 helm uninstall keda -n keda-system
 helm uninstall dapr -n dapr-system
-helm uninstall rabbitmq-cluster-operator
-helm uninstall rabbitmq -n rabbitmq-system
+helm uninstall rabbitmq-cluster-operator -n rabbitmq-system
+
 ```
 
 Delete all Azure resources:
