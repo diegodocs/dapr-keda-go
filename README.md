@@ -9,7 +9,9 @@ This project cover concepts about Distributed Architecture combining follow tech
 - Keda
 - Azure Kubernetes Service (AKS)
 - Azure Container Registry (ACR)
-
+- RabbitMq:(exchange, binding and queues)
+- Redis
+  
 ### Long Story Short
 
 As a developer, I want to implement Distributed Architecture Solution :
@@ -65,9 +67,6 @@ go build ./...
 - `tests`: automated tests(Integration, Smoke, Acceptance)
 - `.docker`: app dockerfile
 - `.helmcharts`: helmcharts for deployment
-  - RabbitMq:(exchange, binding and queues)
-  - Dapr(bindings, pubsub, sub, resilience etc)
-  - Keda(ScaledObjects)
 
 ## You shouldn't find
 
