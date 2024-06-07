@@ -7,9 +7,6 @@ This project cover concepts about Distributed Architecture combining follow tech
 - Go - Producer/Consumer App
 - Dapr
 - Keda
-
-Pubsub examples with:
-
 - Azure Kubernetes Service (AKS)
 - Azure Container Registry (ACR)
 - RabbitMq:(exchange, binding and queues)
