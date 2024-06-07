@@ -8,7 +8,7 @@ This project cover concepts about Distributed Architecture combining follow tech
 - Dapr
 - Keda
 
-Examples for pubsub with:
+Pubsub examples with:
 
 - Azure Kubernetes Service (AKS)
 - Azure Container Registry (ACR)
