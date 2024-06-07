@@ -7,24 +7,13 @@ This project cover concepts about Distributed Architecture combining follow tech
 - Go - Producer/Consumer App
 - Dapr
 - Keda
+
+Examples for pubsub with:
+
 - Azure Kubernetes Service (AKS)
 - Azure Container Registry (ACR)
 - RabbitMq:(exchange, binding and queues)
 - Redis
-  
-## Long Story Short
-
-As a developer, I want to implement Distributed Architecture Solution :
-
-- open:
-  - work with multiple languages/tech-stacks based on business context
-  - testable code
-  - observable ecosystem
-  - easy/transparent troubleshooting
-  - declarative approach (external abstraction via configuration)
-- closed: (be careful)
-  - high-coupled components 
-  - high dependencies of SDKs, 3rd party libraries and etc
 
 ## Distributed Application Runtime - DAPR
 
