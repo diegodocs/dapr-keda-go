@@ -1,5 +1,3 @@
-[<- back to Home](../readme.md)
-
 # App Setup
 
 Expected Results:
@@ -19,13 +17,13 @@ dapr init
 ### Runing consumer app:
 
 ```sh
-dapr run --app-id consumer1 --app-protocol http --dapr-http-port 3500 --app-port 8080  --resources-path .helmcharts/app/templates -- go run ./cmd/consumer
+dapr run --app-id consumer1 --app-protocol http --dapr-http-port 3500 --app-port 8080  --resources-path .dapr/resources -- go run ./cmd/consumer
 ```
 
 ### Runing producer app:
 
 ```sh
-dapr run --app-id producer1 --app-protocol http --dapr-http-port 3501 --resources-path .helmcharts/app/templates -- go run ./cmd/producer
+dapr run --app-id producer1 --app-protocol http --dapr-http-port 3501 --resources-path .dapr/resources -- go run ./cmd/producer
 ```
 
 ### or you can run on unique terminal:
@@ -46,16 +44,16 @@ dapr status -k
 ### Building images
 
 ```sh
-docker build -t "acrdev001br.azurecr.io/consumer-app:1.0.0" -f cmd/consumer/dockerfile .
-docker build -t "acrdev001br.azurecr.io/producer-app:1.0.0" -f cmd/producer/dockerfile .
+docker build -t "${acr-name}.azurecr.io/consumer-app:1.0.0" -f cmd/consumer/dockerfile .
+docker build -t "${acr-name}.azurecr.io/producer-app:1.0.0" -f cmd/producer/dockerfile .
 ```
 
 ### Pushing images to ACR
 
 ```sh
-az acr login --name acrdev001br
-docker push "acrdev001br.azurecr.io/consumer-app:1.0.0" 
-docker push "acrdev001br.azurecr.io/producer-app:1.0.0" 
+az acr login --name ${acr-name}
+docker push "${acr-name}.azurecr.io/consumer-app:1.0.0" 
+docker push "${acr-name}.azurecr.io/producer-app:1.0.0" 
 ```
 
 ### Deploying App helm-charts

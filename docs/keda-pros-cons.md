@@ -1,5 +1,3 @@
-[<- back to Home](../readme.md)
-
 # Kubernetes Cluster scaling using KEDA
 
 It's a Cloud Native Computing Foundation (CNCF) graduated project.
@@ -23,7 +21,7 @@ It's a Cloud Native Computing Foundation (CNCF) graduated project.
 - Multiple KEDA Installations Not Supported: Deploying multiple KEDA installations within the same cluster is not supported.
 - Manual integration with SDKs: for input/output bindings, for example
 
-### References
+## References
 
 - [Simplified application autoscaling with Kubernetes Event-driven Autoscaling (KEDA) add-on](https://learn.microsoft.com/en-us/azure/aks/keda-about)
 - [Dotnet Sample Producer/Consumer using KEDA on github](https://github.com/kedacore/sample-dotnet-worker-servicebus-queue)

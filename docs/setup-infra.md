@@ -1,5 +1,3 @@
-[<- back to Home](../readme.md)
-
 # Infra Setup
 
 Expected Results:
@@ -27,7 +25,7 @@ az account set --subscription <subscription-id>
 Create a resource group:
 
 ```sh
-az group create --name <rg-name> --location brazilsouth
+az group create --name ${rg-name} --location ${location}
 ```
 
 ## 1. Create an AKS cluster and attach ACR
@@ -35,23 +33,25 @@ az group create --name <rg-name> --location brazilsouth
 Create an AKS cluster:
 
 ```sh
-az aks create --resource-group <rg-name> --name <aks-name> --node-count 2 --location brazilsouth --node-vm-size Standard_D4ds_v5 --enable-managed-identity --generate-ssh-keys --tier free 
+az aks create --resource-group ${rg-name} --name ${aks-name} --node-count 2 --location ${location} --node-vm-size Standard_D4ds_v5 --enable-managed-identity --generate-ssh-keys --tier free 
 ```
 
 Create an Container Registry:
+
 ```sh
-az acr create --name <acr-name> --resource-group <rg-name> --sku basic
+az acr create --name ${acr-name} --resource-group ${rg-name} --sku basic
 ```
 
 Attach the Container Registry to AKS:
+
 ```sh
-az aks update --name <aks-name> --resource-group <rg-name> --attach-acr <acr-name>
+az aks update --name ${aks-name} --resource-group ${rg-name} --attach-acr ${acr-name}
 ```
 
 Get the access credentials for the AKS cluster:
 
 ```sh
-az aks get-credentials --resource-group <rg-name> --name <aks-name> --overwrite-existing
+az aks get-credentials --resource-group ${rg-name} --name ${aks-name} --overwrite-existing
 ```
 
 Verify the connection to the cluster:
@@ -60,10 +60,12 @@ Verify the connection to the cluster:
 kubectl cluster-info
 ```
 
-Verify the two nodes are deployed:
+Create Service Bus and Topic :
 
 ```sh
-kubectl get pod -A
+az servicebus namespace create --resource-group ${rg-name} --name ${svcbus-name} --location ${location}
+az servicebus topic create --name events --namespace-name ${svcbus-name} --resource-group ${rg-name}
+az servicebus namespace authorization-rule keys list --resource-group ${rg-name} --namespace-name ${svcbus-name} --name RootManageSharedAccessKey --query primaryConnectionString --output tsv
 ```
 
 ## 2. Setup Dapr on AKS
@@ -99,7 +101,23 @@ Verify if pods are running:
 kubectl get pods -n rabbitmq-system
 ```
 
-## 4. Add Keda to AKS
+## 4. Add a Redis cluster to AKS
+
+Add a reference:
+
+```sh
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+helm upgrade --install redis-cluster bitnami/redis -n redis-system --create-namespace
+```
+
+Verify if pods are running:
+
+```sh
+kubectl get pods -n redis-system
+```
+
+## 5. Add Keda to AKS
 
 Add a reference :
 
@@ -134,7 +152,8 @@ helm uninstall rabbitmq-cluster-operator -n rabbitmq-system
 Delete all Azure resources:
 
 ```sh
-az aks delete --name <aks-name> --resource-group <rg-name>
-az acr delete --name <acr-name> --resource-group <rg-name>
-az group delete --name <rg-name>
+az servicebus namespace delete --resource-group ${rg-name} --name ${svcbus-name}
+az aks delete --name ${aks-name} --resource-group ${rg-name}
+az acr delete --name ${acr-name} --resource-group ${rg-name}
+az group delete --name ${rg-name}
 ```
