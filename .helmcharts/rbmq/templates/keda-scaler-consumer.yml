@@ -1,0 +1,28 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: keda-scaler-consumer
+spec:
+  scaleTargetRef:
+    name: {{ .Values.consumer.name }}
+  pollingInterval: {{ .Values.keda.pollingInterval }}
+  cooldownPeriod: {{ .Values.keda.cooldownPeriod }}
+  minReplicaCount: {{ .Values.keda.minReplicaCount }}
+  maxReplicaCount: {{ .Values.keda.maxReplicaCount }}
+  triggers:
+    - type: rabbitmq
+      metadata:
+        queueName:  {{ .Values.rabbitmq.queue.name }}
+        queueLength: {{ .Values.keda.queueLength | quote}}
+      authenticationRef:
+        name: keda-trigger-auth
+---
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: keda-trigger-auth
+spec:
+  secretTargetRef:
+    - parameter: host
+      name: rbmq-host-secret
+      key: host

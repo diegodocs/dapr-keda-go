@@ -21,7 +21,14 @@ spec:
       containers:
         - name: {{ .Values.producer.name }}
           image: "{{ .Values.image.repository }}/{{ .Values.producer.image.name }}:{{ .Values.producer.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}          
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            requests:
+              cpu: 64m
+              memory: 128Mi
+            limits:
+              cpu: 128m
+              memory: 256Mi
           ports:
             - containerPort: {{ .Values.producer.port }}
               name: app-http

@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	pubsubName  = "pubsub001"
+	pubsubName  = "rbmq-dapr-pubsub"
 	pubsubTopic = "events"
 )
 

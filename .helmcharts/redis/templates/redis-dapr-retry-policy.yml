@@ -1,0 +1,18 @@
+apiVersion: dapr.io/v1alpha1
+kind: Resiliency
+metadata:
+  name: redis-dapr-retry-policy
+spec:
+  policies:
+    retries:
+       pubsubRetry:
+        policy: exponential         
+        maxInterval: 10s
+        maxRetries: 5
+  targets:
+    components:
+      redis-dapr-pubsub:
+        inbound:
+          retry: pubsubRetry
+scopes:
+   - {{ .Values.consumer.name }}

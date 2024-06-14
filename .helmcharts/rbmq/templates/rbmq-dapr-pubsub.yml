@@ -1,0 +1,40 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: rbmq-dapr-pubsub
+spec:
+  type: pubsub.rabbitmq
+  version: v1
+  metadata:  
+  - name: connectionString    
+    secretKeyRef:
+      name: rbmq-host-secret
+      key: host
+  - name: protocol
+    value: amqp  
+  - name: hostname
+    value: {{ .Values.rabbitmq.cluster.hostname }}
+  - name: username
+    value: {{ .Values.rabbitmq.user.name }}
+  - name: password
+    secretKeyRef:
+      name: rbmq-secrets
+      key: userPassword
+  - name: durable
+    value: true
+  - name: deletedWhenUnused
+    value: false
+  - name: autoAck
+    value: false
+  - name: deliveryMode
+    value: 2
+  - name: prefetchCount
+    value: 1
+  - name: reconnectWait
+    value: 0
+  - name: concurrencyMode
+    value: parallel
+  - name: publisherConfirm
+    value: false
+  - name: exchangeKind
+    value: topic

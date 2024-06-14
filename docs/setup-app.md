@@ -44,23 +44,24 @@ dapr status -k
 ### Building images
 
 ```sh
-docker build -t "${acr-name}.azurecr.io/consumer-app:1.0.0" -f cmd/consumer/dockerfile .
-docker build -t "${acr-name}.azurecr.io/producer-app:1.0.0" -f cmd/producer/dockerfile .
+az acr login --name {acrname}
+docker build -t "{acrname}.azurecr.io/consumer-app:1.0.0" -f cmd/consumer/dockerfile .
+docker build -t "{acrname}.azurecr.io/producer-app:1.0.0" -f cmd/producer/dockerfile .
 ```
 
 ### Pushing images to ACR
 
 ```sh
-az acr login --name ${acr-name}
-docker push "${acr-name}.azurecr.io/consumer-app:1.0.0" 
-docker push "${acr-name}.azurecr.io/producer-app:1.0.0" 
+
+docker push "{acrname}.azurecr.io/consumer-app:1.0.0" 
+docker push "{acrname}.azurecr.io/producer-app:1.0.0" 
 ```
 
 ### Deploying App helm-charts
 
 ```sh
-helm upgrade --install plant-trees-rbmq .helmcharts/rbmq -n plant-trees --create-namespace
-helm upgrade --install plant-trees-app .helmcharts/app -n plant-trees --create-namespace
+helm upgrade --install rbmq .helmcharts/rbmq -n tree --create-namespace
+helm upgrade --install tree-app .helmcharts/app -n tree --create-namespace
 ```
 
 ### Dapr Dashboard
@@ -82,17 +83,17 @@ Dapr dashboard available at http://localhost:8080
 
 ```sh
 # Reviewing Logs
-kubectl logs -f -l app=consumer1 --all-containers=true -n plant-trees
+kubectl logs -f -l app=consumer1 --all-containers=true -n tree
 
 # Create a port
-kubectl port-forward pod/producer1 8081 8081 -n plant-trees
+kubectl port-forward pod/producer1 8081 8081 -n tree
 
 # Send post to producer app
 - POST -> http://localhost:8081/plant
 - Json Body: {"numberOfTrees":100}
 
 # Review pod instances and status
-kubectl get pod -l app=consumer1 -n plant-trees
+kubectl get pod -l app=consumer1 -n tree
 ```
 
 Explore the dashboard to drill down into the applications, components, and services.

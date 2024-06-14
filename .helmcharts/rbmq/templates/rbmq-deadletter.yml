@@ -1,0 +1,34 @@
+apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata:
+  name: rbmq-consumer1-dlq
+spec:
+  name: {{ .Values.rabbitmq.queue.name }}-dlq
+  type: {{ .Values.rabbitmq.queue.type }}
+  autoDelete: {{ .Values.rabbitmq.queue.autoDelete }}
+  durable: {{ .Values.rabbitmq.queue.durable }}  
+  rabbitmqClusterReference:
+    name: {{ .Values.rabbitmq.cluster.name }}
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Exchange
+metadata:
+  name: rbmq-consumer1-exchange-dlx
+spec:
+  name: {{ .Values.rabbitmq.exchange.name }}-dlx
+  type: {{ .Values.rabbitmq.exchange.type }}
+  autoDelete: {{ .Values.rabbitmq.exchange.autoDelete }}
+  durable: {{ .Values.rabbitmq.exchange.durable }}
+  rabbitmqClusterReference:
+    name: {{ .Values.rabbitmq.cluster.name }}
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Binding
+metadata:
+  name: rbmq-consumer1-binding-dlq
+spec:
+  source: {{ .Values.rabbitmq.exchange.name }}-dlx
+  destination: {{ .Values.rabbitmq.queue.name }}-dlq
+  destinationType: queue
+  rabbitmqClusterReference:
+    name: {{ .Values.rabbitmq.cluster.name }}

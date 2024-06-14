@@ -1,0 +1,12 @@
+apiVersion: dapr.io/v2alpha1
+kind: Subscription
+metadata:
+  name: az-svcbus-dapr-sub-consumer1
+spec:
+  pubsubname: az-svcbus-dapr-pubsub
+  topic: {{ .Values.svcbus.topic.name }}
+  routes:
+    default: {{ .Values.consumer.route }}
+  deadLetterTopic: {{ .Values.svcbus.topic.name }}-dlx  
+scopes:
+  - {{ .Values.consumer.name }}

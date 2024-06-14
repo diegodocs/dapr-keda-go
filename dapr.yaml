@@ -8,12 +8,12 @@ apps:
     daprHTTPPort: 3502
     appPort: 8080
     logLevel: "debug"   
-    #containerImage: ${acr-name}.azurecr.io/consumer-app:1.0.0 
+    #containerImage: {acrname}.azurecr.io/consumer-app:1.0.0 
     command: ["go", "run", "main.go"]
   - appID: producer-app
     appDirPath: ./cmd/producer   
     daprHTTPPort: 3501
     logLevel: "debug"    
-    #containerImage: ${acr-name}.azurecr.io/producer-app:1.0.0
+    #containerImage: {acrname}.azurecr.io/producer-app:1.0.0
     command: ["go", "run", "main.go"]
   

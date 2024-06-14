@@ -1,7 +1,7 @@
 apiVersion: dapr.io/v1alpha1
 kind: Resiliency
 metadata:
-  name: consumer-dapr-retry
+  name: rbmq-dapr-retry-policy
 spec:
   policies:
     retries:
@@ -11,7 +11,7 @@ spec:
         maxRetries: 5
   targets:
     components:
-      pubsub001:
+      rbmq-dapr-pubsub:
         inbound:
           retry: pubsubRetry
 scopes:

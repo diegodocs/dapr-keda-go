@@ -1,12 +1,11 @@
 apiVersion: dapr.io/v1alpha1
 kind: Component
 metadata:
-  name: pubsub001
+  name: az-svcbus-dapr-pubsub
 spec:
   type: pubsub.azure.servicebus.topics
   version: v1
-  metadata:
-  # Required when not using Microsoft Entra ID Authentication
+  metadata:  
   - name: connectionString
-    value: { service_bus_endpoint }
+    value: __UPDATE_ME__
   

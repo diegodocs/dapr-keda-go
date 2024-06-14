@@ -1,0 +1,28 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: az-svcbus-keda-scaler-consumer  
+spec:
+  scaleTargetRef:
+    name: {{ .Values.consumer.name }}
+  pollingInterval: {{ .Values.keda.pollingInterval }}
+  cooldownPeriod: {{ .Values.keda.cooldownPeriod }}
+  minReplicaCount: {{ .Values.keda.minReplicaCount }}
+  maxReplicaCount: {{ .Values.keda.maxReplicaCount }}
+  triggers:
+  - type: azure-servicebus
+    metadata:      
+      topicName: {{ .Values.svcbus.topic.name }}
+      subscriptionName: {{ .Values.svcbus.subscription.name }}      
+      namespace: {{ .Values.svcbus.namespace }}      
+      messageCount: {{ .Values.keda.messageCount | quote}}      
+    authenticationRef:
+        name: az-svcbus-keda-auth
+---
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: az-svcbus-keda-auth
+spec:
+  podIdentity:
+    provider: azure | azure-workload

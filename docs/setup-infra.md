@@ -19,13 +19,13 @@ az login
 Set the default subscription:
 
 ```sh
-az account set --subscription <subscription-id>
+az account set --subscription {subid}
 ```
 
 Create a resource group:
 
 ```sh
-az group create --name ${rg-name} --location ${location}
+az group create --name {rgname} --location {location}
 ```
 
 ## 1. Create an AKS cluster and attach ACR
@@ -33,39 +33,31 @@ az group create --name ${rg-name} --location ${location}
 Create an AKS cluster:
 
 ```sh
-az aks create --resource-group ${rg-name} --name ${aks-name} --node-count 2 --location ${location} --node-vm-size Standard_D4ds_v5 --enable-managed-identity --generate-ssh-keys --tier free 
+az aks create --resource-group {rgname} --name {aksname} --node-count 2 --location {location} --node-vm-size Standard_D4ds_v5 --tier free 
 ```
 
 Create an Container Registry:
 
 ```sh
-az acr create --name ${acr-name} --resource-group ${rg-name} --sku basic
+az acr create --name {acrname} --resource-group {rgname} --sku basic
 ```
 
 Attach the Container Registry to AKS:
 
 ```sh
-az aks update --name ${aks-name} --resource-group ${rg-name} --attach-acr ${acr-name}
+az aks update --name {aksname} --resource-group {rgname} --attach-acr {acrname}
 ```
 
 Get the access credentials for the AKS cluster:
 
 ```sh
-az aks get-credentials --resource-group ${rg-name} --name ${aks-name} --overwrite-existing
+az aks get-credentials --resource-group {rgname} --name {aksname} --overwrite-existing
 ```
 
 Verify the connection to the cluster:
 
 ```sh
 kubectl cluster-info
-```
-
-Create Service Bus and Topic :
-
-```sh
-az servicebus namespace create --resource-group ${rg-name} --name ${svcbus-name} --location ${location}
-az servicebus topic create --name events --namespace-name ${svcbus-name} --resource-group ${rg-name}
-az servicebus namespace authorization-rule keys list --resource-group ${rg-name} --namespace-name ${svcbus-name} --name RootManageSharedAccessKey --query primaryConnectionString --output tsv
 ```
 
 ## 2. Setup Dapr on AKS
@@ -85,39 +77,7 @@ Verify if pods are running:
 kubectl get pods -n dapr-system
 ```
 
-## 3. Add a RabbitMq cluster to AKS
-
-Add a reference:
-
-```sh
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm repo update
-helm upgrade --install rabbitmq-cluster-operator bitnami/rabbitmq-cluster-operator -n rabbitmq-system --create-namespace
-```
-
-Verify if pods are running:
-
-```sh
-kubectl get pods -n rabbitmq-system
-```
-
-## 4. Add a Redis cluster to AKS
-
-Add a reference:
-
-```sh
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm repo update
-helm upgrade --install redis-cluster bitnami/redis -n redis-system --create-namespace
-```
-
-Verify if pods are running:
-
-```sh
-kubectl get pods -n redis-system
-```
-
-## 5. Add Keda to AKS
+## 3. Add Keda to AKS
 
 Add a reference :
 
@@ -135,25 +95,29 @@ Verify if pods are running:
 kubectl get pods -n keda-system
 ```
 
+## 3. Setup Transport Layer
+
+In this project, we have 3 different options to configure the transport layer (choose one):
+
+- [Azure Service Bus](setup-infra-az-svcbus.md)
+- [Redis](setup-infra-redis.md)
+- [RabbitMq](setup-infra-rbmq.md)
+
 ## 6. Clean-up
 
 Follow these steps to remove all the apps, components and cloud resources created in this how-to guide.
 
 ```sh
-helm uninstall plant-trees-rbmq -n plant-trees
-helm uninstall plant-trees-app -n plant-trees
 helm uninstall keda-add-ons-http -n keda-system
 helm uninstall keda -n keda-system
 helm uninstall dapr -n dapr-system
-helm uninstall rabbitmq-cluster-operator -n rabbitmq-system
-
 ```
 
 Delete all Azure resources:
 
 ```sh
-az servicebus namespace delete --resource-group ${rg-name} --name ${svcbus-name}
-az aks delete --name ${aks-name} --resource-group ${rg-name}
-az acr delete --name ${acr-name} --resource-group ${rg-name}
-az group delete --name ${rg-name}
+az servicebus namespace delete --resource-group {rgname} --name {svcbusname}
+az aks delete --name {aksname} --resource-group {rgname}
+az acr delete --name {acrname} --resource-group {rgname}
+az group delete --name {rgname}
 ```

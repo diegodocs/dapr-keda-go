@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: rbmq-guest-user-credentials
+  name: rbmq-guest-secret
 type: Opaque
 stringData:
   username: {{ .Values.rabbitmq.user.name }}
@@ -16,7 +16,7 @@ spec:
   rabbitmqClusterReference:
     name: {{ .Values.rabbitmq.cluster.name }}
   importCredentialsSecret:
-    name: rbmq-guest-user-credentials
+    name: rbmq-guest-secret
 ---
 apiVersion: rabbitmq.com/v1beta1
 kind: Permission
@@ -29,5 +29,7 @@ spec:
     write: ".*"
     configure: ".*"
     read: ".*"
+  tags:
+  - administrator
   rabbitmqClusterReference:
     name: {{ .Values.rabbitmq.cluster.name }}
