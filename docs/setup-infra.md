@@ -77,6 +77,21 @@ Verify if pods are running:
 kubectl get pods -n dapr-system
 ```
 
+### Dapr Dashboard
+
+#### To access the Dapr dashboard, run the following command
+
+```sh
+dapr dashboard -k
+```
+
+#### Expected response
+
+```sh
+Dapr dashboard found in namespace: dapr-system
+Dapr dashboard available at http://localhost:8080
+```
+
 ## 3. Add Keda to AKS
 
 Add a reference :
@@ -103,7 +118,11 @@ In this project, we have 3 different options to configure the transport layer (c
 - [Redis](setup-infra-redis.md)
 - [RabbitMq](setup-infra-rbmq.md)
 
-## 6. Clean-up
+## 3. Deploying  your applications on AKS
+
+- [Setup App steps](setup-app.md)
+
+## 4. Clean-up
 
 Follow these steps to remove all the apps, components and cloud resources created in this how-to guide.
 

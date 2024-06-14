@@ -35,8 +35,7 @@ This project cover concepts about Distributed Architecture combining follow tech
 
 ## Setup your environment
 
-- [Infra steps](./docs/setup-infra.md)
-- [App steps](./docs/setup-app.md)
+- [Setup Infra steps](./docs/setup-infra.md)
 
 ## Restore, Build and Test
 

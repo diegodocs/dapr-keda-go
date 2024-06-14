@@ -1,5 +1,9 @@
 # Infra Setup - Azure Service Bus
 
+Expected Results:
+
+- Deploy Azure Service Bus Namespace, Topics
+- Deploy dapr and keda configuration via Helm-Charts
 
 ## 1. Setup Azure Service Bus and Topic
 
@@ -35,7 +39,7 @@ kubectl get scaledobjects -n tree
 kubectl get components -n tree
 ```
 
-## 6. Clean-up
+## 3. Clean-up
 
 Follow these steps to remove all the apps, components and cloud resources created in this how-to guide.
 

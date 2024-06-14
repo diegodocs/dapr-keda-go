@@ -1,5 +1,10 @@
 # Infra Setup - RabbitMQ
 
+Expected Results:
+
+- Deploy RabbitMQ Cluster, User, Queues, Exchanges and Bindings
+- Deploy dapr and keda configuration via Helm-Charts
+
 ## 1. Deploying Helm-chart: RabbitMQ Cluster Operator
 
 Add a reference:

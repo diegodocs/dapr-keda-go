@@ -8,19 +8,19 @@ Expected Results:
 
 ## 1. Running Applications Locally
 
-### Initialize Dapr locally:
+### Initialize Dapr locally
 
 ```sh
 dapr init
 ```
 
-### Runing consumer app:
+### Runing consumer app
 
 ```sh
 dapr run --app-id consumer1 --app-protocol http --dapr-http-port 3500 --app-port 8080  --resources-path .dapr/resources -- go run ./cmd/consumer
 ```
 
-### Runing producer app:
+### Runing producer app
 
 ```sh
 dapr run --app-id producer1 --app-protocol http --dapr-http-port 3501 --resources-path .dapr/resources -- go run ./cmd/producer
@@ -57,26 +57,16 @@ docker push "{acrname}.azurecr.io/consumer-app:1.0.0"
 docker push "{acrname}.azurecr.io/producer-app:1.0.0" 
 ```
 
-### Deploying App helm-charts
+### 2. Setup Dapr and Keda Dependencies
 
 ```sh
-helm upgrade --install rbmq .helmcharts/rbmq -n tree --create-namespace
-helm upgrade --install tree-app .helmcharts/app -n tree --create-namespace
+helm upgrade --install app .helmcharts/app -n tree --create-namespace
 ```
 
-### Dapr Dashboard
-
-#### To access the Dapr dashboard, run the following command:
+Verify if pods are running:
 
 ```sh
-dapr dashboard -k
-```
-
-#### Expected response:
-
-```sh
-Dapr dashboard found in namespace: dapr-system
-Dapr dashboard available at http://localhost:8080
+kubectl get pods -n tree
 ```
 
 ## 3. Testing the application
@@ -96,4 +86,8 @@ kubectl port-forward pod/producer1 8081 8081 -n tree
 kubectl get pod -l app=consumer1 -n tree
 ```
 
-Explore the dashboard to drill down into the applications, components, and services.
+## 4. Clean-up
+
+```sh
+helm uninstall app - tree
+```
