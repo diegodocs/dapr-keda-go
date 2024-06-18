@@ -9,6 +9,7 @@ This project cover concepts about Distributed Architecture combining follow tech
 - Keda
 - Azure Kubernetes Service (AKS)
 - Azure Container Registry (ACR)
+- Azure Service Bus  (ASB)
 - RabbitMq:(exchange, binding and queues)
 - Redis
 
@@ -35,7 +36,7 @@ This project cover concepts about Distributed Architecture combining follow tech
 
 ## Setup your environment
 
-- [Setup Infra steps](./docs/setup-infra.md)
+- [Detailed steps to setup your environment](./docs/setup-infra.md)
 
 ## Restore, Build and Test
 
