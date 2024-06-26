@@ -1,19 +1,20 @@
 version: 1
 common:
-  resourcesPath: .dapr/resources
+  resourcesPath: .dapr/resources # select your broker: az-svcbus, rbmq or redis
 apps:
-  - appID: consumer-app
-    appDirPath: ./cmd/consumer
-    appProtocol: "http"
-    daprHTTPPort: 3502
-    appPort: 8080
-    logLevel: "debug"   
-    #containerImage: {acrname}.azurecr.io/consumer-app:1.0.0 
-    command: ["go", "run", "main.go"]
-  - appID: producer-app
-    appDirPath: ./cmd/producer   
-    daprHTTPPort: 3501
-    logLevel: "debug"    
-    #containerImage: {acrname}.azurecr.io/producer-app:1.0.0
-    command: ["go", "run", "main.go"]
-  
+- appID: consumer-app
+  appDirPath: ./cmd/consumer
+  appProtocol: "http"
+  daprHTTPPort: 3502
+  appPort: 8080
+  logLevel: "debug"
+  #containerImage: <acr-name>.azurecr.io/consumer-app:1.0.0 
+  command: ["go", "run", "main.go"]
+- appID: producer-app
+  appDirPath: ./cmd/producer
+  daprHTTPPort: 3501
+  appPort: 8081
+  logLevel: "debug"
+  #containerImage: <acr-name>.azurecr.io/producer-app:1.0.0
+  command: ["go", "run", "main.go"]
+
