@@ -8,33 +8,46 @@ Expected Results:
 ## 1. Setup Azure Service Bus and Topic
 
 Create Namespace:
-```sh
-az servicebus namespace create --resource-group {rgname} --name {svcbusname} --location {location}
+
+```powershell
+az servicebus namespace create --resource-group $ResourceGroupName --name $ServiceBusNamespace --location $Location --sku basic
 ```
 
 Create Topic:
 
-```sh
-az servicebus topic create --name events --namespace-name {svcbusname} --resource-group {rgname}
+```powershell
+az servicebus queue create --name events --namespace-name $ServiceBusNamespace --resource-group $ResourceGroupName
 ```
 
 Get ConnectionString value:
 
-```sh
-az servicebus namespace authorization-rule keys list --resource-group {rgname} --namespace-name {svcbusname} --name RootManageSharedAccessKey --query primaryConnectionString --output tsv
+```powershell
+az servicebus namespace authorization-rule keys list --resource-group $ResourceGroupName --namespace-name $ServiceBusNamespace --name RootManageSharedAccessKey --query primaryConnectionString --output tsv
+
+
+Replace text '$ServiceBusEndPoint' by value above
+
+```
+
+Add authorization to KEDA monitor the queue:
+
+```powershell
+az servicebus queue authorization-rule create --resource-group $ResourceGroupName --namespace-name $ServiceBusNamespace --queue-name events --name keda-monitor --rights Listen
+
+
 ```
 
 ## 2. Setup Dapr and Keda Dependencies
 
 Add a reference:
 
-```sh
-helm upgrade --install az-svcbus .helmcharts/az-svcbus -n tree --create-namespace
+```powershell
+helm upgrade --install azsbus .helmcharts/azsbus -n tree --create-namespace
 ```
 
 Verify if pods are running:
 
-```sh
+```powershell
 kubectl get scaledobjects -n tree
 kubectl get components -n tree
 ```
@@ -43,12 +56,12 @@ kubectl get components -n tree
 
 Follow these steps to remove all the apps, components and cloud resources created in this how-to guide.
 
-```sh
-helm uninstall az-svcbus -n tree
+```powershell
+helm uninstall azsbus -n tree
 ```
 
 Deleting azure resources:
 
-```sh
-az servicebus namespace delete --resource-group {rgname} --name {svcbusname}
+```powershell
+az servicebus namespace delete --resource-group $ResourceGroupName --name $ServiceBusNamespace
 ```

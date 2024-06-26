@@ -1,7 +1,7 @@
 apiVersion: dapr.io/v1alpha1
 kind: Resiliency
 metadata:
-  name: consumer-dapr-retry
+  name: azsbus-dapr-retry-policy
 spec:
   policies:
     retries:
@@ -11,8 +11,8 @@ spec:
         maxRetries: 5
   targets:
     components:
-      pubsub001:
+      plant-tree-pubsub:
         inbound:
           retry: pubsubRetry
 scopes:
-   - consumer1
+   - {{ .Values.consumer.name }}

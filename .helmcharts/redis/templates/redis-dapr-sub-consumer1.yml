@@ -3,7 +3,7 @@ kind: Subscription
 metadata:
   name: redis-dapr-sub-consumer1
 spec:
-  pubsubname: redis-dapr-pubsub
+  pubsubname: plant-tree-pubsub
   topic: {{ .Values.redis.list.name }}
   routes:
     default: {{ .Values.consumer.route }}

@@ -10,31 +10,31 @@ Expected Results:
 
 ### Initialize Dapr locally
 
-```sh
+```powershell
 dapr init
 ```
 
 ### Runing consumer app
 
-```sh
+```powershell
 dapr run --app-id consumer1 --app-protocol http --dapr-http-port 3500 --app-port 8080  --resources-path .dapr/resources -- go run ./cmd/consumer
 ```
 
 ### Runing producer app
 
-```sh
+```powershell
 dapr run --app-id producer1 --app-protocol http --dapr-http-port 3501 --resources-path .dapr/resources -- go run ./cmd/producer
 ```
 
 ### or you can run on unique terminal:
 
-```sh
+```powershell
 dapr run -f ./dapr.yaml
 ```
 
 ### You can also initialize Dapr on the provisioned AKS cluster (just for debugging purposal)
 
-```sh
+```powershell
 dapr init --kubernetes --wait
 dapr status -k
 ```
@@ -43,35 +43,35 @@ dapr status -k
 
 ### Building images
 
-```sh
-az acr login --name {acrname}
-docker build -t "{acrname}.azurecr.io/consumer-app:1.0.0" -f cmd/consumer/dockerfile .
-docker build -t "{acrname}.azurecr.io/producer-app:1.0.0" -f cmd/producer/dockerfile .
+```powershell
+az acr login --name $ContainerRegistryName
+docker build -t "$ContainerRegistryName.azurecr.io/consumer-app:1.0.0" -f cmd/consumer/dockerfile .
+docker build -t "$ContainerRegistryName.azurecr.io/producer-app:1.0.0" -f cmd/producer/dockerfile .
 ```
 
 ### Pushing images to ACR
 
-```sh
+```powershell
 
-docker push "{acrname}.azurecr.io/consumer-app:1.0.0" 
-docker push "{acrname}.azurecr.io/producer-app:1.0.0" 
+docker push "$ContainerRegistryName.azurecr.io/consumer-app:1.0.0" 
+docker push "$ContainerRegistryName.azurecr.io/producer-app:1.0.0" 
 ```
 
 ### 2. Setup Dapr and Keda Dependencies
 
-```sh
+```powershell
 helm upgrade --install app .helmcharts/app -n tree --create-namespace
 ```
 
 Verify if pods are running:
 
-```sh
+```powershell
 kubectl get pods -n tree
 ```
 
 ## 3. Testing the application
 
-```sh
+```powershell
 # Reviewing Logs
 kubectl logs -f -l app=consumer1 --all-containers=true -n tree
 
@@ -88,6 +88,6 @@ kubectl get pod -l app=consumer1 -n tree
 
 ## 4. Clean-up
 
-```sh
+```powershell
 helm uninstall app - tree
 ```

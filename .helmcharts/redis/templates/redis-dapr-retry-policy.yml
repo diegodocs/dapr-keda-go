@@ -11,7 +11,7 @@ spec:
         maxRetries: 5
   targets:
     components:
-      redis-dapr-pubsub:
+      plant-tree-pubsub:
         inbound:
           retry: pubsubRetry
 scopes:
