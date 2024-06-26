@@ -1,3 +1,5 @@
+[![Go-Build-Test](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/go.yml/badge.svg?branch=main)](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/go.yml)
+
 # Planting Trees App
 
 ## Summary
