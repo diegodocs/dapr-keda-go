@@ -1,23 +1,36 @@
 #APP
-podAnnotations:    
+resources:
+  requests:
+    cpu: 64m
+    memory: 128Mi
+  limits:
+    cpu: 128m
+    memory: 256Mi
+env:
+  ENVIRONMENT: "local"
+
+podAnnotations:
   dapr.io/enabled: "true"
-  dapr.io/app-protocol: "http"  
+  dapr.io/app-protocol: "http"
   dapr.io/log-as-json: "true"
-  dapr.io/log-level: "debug"
+  dapr.io/log-level: "error"
   dapr.io/enable-api-logging: "true"
+
 consumer:
   name: "consumer1"
   port: 8080
   image:
-    name: "consumer-app"    
+    name: "consumer-app"
     tag: "1.0.0"
+
 producer:
   name: "producer1"
   port: 8081
   image:
-    name: "producer-app"    
+    name: "producer-app"
     tag: "1.0.0"
+
 #IMAGE
 image:
-  repository: "{acrname}.azurecr.io"    
+  repository: "$ContainerRegistryName.azurecr.io"
   pullPolicy: "Always"

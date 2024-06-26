@@ -3,9 +3,9 @@ kind: Subscription
 metadata:
   name: consumer-dapr-sub
 spec:
-  pubsubname: pubsub001
+  pubsubname: plant-tree-pubsub
   topic: events
   routes:
     default: /subscription
 scopes:
-  - consumer1
+- consumer1

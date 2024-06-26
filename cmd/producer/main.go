@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	pubsubName  = "rbmq-dapr-pubsub"
+	pubsubName  = "plant-tree-pubsub"
 	pubsubTopic = "events"
 )
 
@@ -54,7 +54,10 @@ func plantTree(numberOfTrees int, handler *Handler) {
 func main() {
 	log.Println("Producer App Started ...")
 	// Create a new client for Dapr using the SDK
-	client, _ := dapr.NewClient()
+	client, err := dapr.NewClient()
+	if err != nil {
+		log.Fatalln("Error to create instace of Dapr Client: ", err)
+	}
 	defer client.Close()
 
 	handler := &Handler{Client: client, EventsProcessed: 1}

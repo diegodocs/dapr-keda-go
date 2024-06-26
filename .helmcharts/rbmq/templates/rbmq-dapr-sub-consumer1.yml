@@ -3,7 +3,7 @@ kind: Subscription
 metadata:
   name: rbmq-dapr-sub-consumer1
 spec:
-  pubsubname: rbmq-dapr-pubsub
+  pubsubname: plant-tree-pubsub
   topic: {{ .Values.rabbitmq.exchange.name }}
   routes:
     default: {{ .Values.consumer.route }}

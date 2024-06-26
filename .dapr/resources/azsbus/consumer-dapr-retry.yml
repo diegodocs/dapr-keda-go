@@ -1,18 +1,19 @@
 apiVersion: dapr.io/v1alpha1
 kind: Resiliency
 metadata:
-  name: az-svcbus-dapr-retry-policy
+  name: consumer-dapr-retry
 spec:
   policies:
     retries:
-       pubsubRetry:
-        policy: exponential         
+      pubsubRetry:
+        policy: exponential
         maxInterval: 10s
         maxRetries: 5
   targets:
     components:
-      az-svcbus-dapr-pubsub:
+      plant-tree-pubsub:
         inbound:
           retry: pubsubRetry
 scopes:
-   - {{ .Values.consumer.name }}
+- consumer1
+- producer1

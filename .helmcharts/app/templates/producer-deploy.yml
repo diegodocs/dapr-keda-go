@@ -23,12 +23,24 @@ spec:
           image: "{{ .Values.image.repository }}/{{ .Values.producer.image.name }}:{{ .Values.producer.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
-            requests:
-              cpu: 64m
-              memory: 128Mi
-            limits:
-              cpu: 128m
-              memory: 256Mi
+            {{- toYaml .Values.resources | nindent 12 }}       
+          env:          
+          {{- range $key, $val := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $val | quote }}
+          {{- end }}
           ports:
             - containerPort: {{ .Values.producer.port }}
               name: app-http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.producer.name }}-service
+spec:
+  selector:
+    app: {{ .Values.producer.name }}
+  ports:
+    - port: {{ .Values.producer.port }}
+      targetPort: {{ .Values.producer.port }}
+  type: LoadBalancer

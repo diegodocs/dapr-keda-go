@@ -9,7 +9,7 @@ Expected Results:
 
 Add a reference:
 
-```sh
+```powershell
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
 helm upgrade --install redis-cluster bitnami/redis -n redis-system --create-namespace
@@ -17,7 +17,7 @@ helm upgrade --install redis-cluster bitnami/redis -n redis-system --create-name
 
 Verify if pods are running:
 
-```sh
+```powershell
 kubectl get pods -n redis-system
 ```
 
@@ -25,20 +25,20 @@ kubectl get pods -n redis-system
 
 Add a reference:
 
-```sh
+```powershell
 helm upgrade --install redis .helmcharts/redis -n tree --create-namespace
 ```
 
 Verify if pods are running:
 
-```sh
+```powershell
 kubectl get scaledobjects -n tree
 kubectl get components -n tree
 ```
 
 ## 3. Clean-up
 
-```sh
+```powershell
 helm uninstall redis - tree
 helm uninstall redis-cluster-n redis-system
 ```

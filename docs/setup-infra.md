@@ -12,54 +12,62 @@ Expected Results:
 
 Login to Azure using the CLI:
 
-```sh
+```powershell
 az login
+```
+
+Replace follow texts with correct values based on your environment:
+
+```powershell
+- $SubscriptionID = ''
+- $Location = ''
+- $ResourceGroupName = ''
+- $AKSClusterName = ''
+- $ContainerRegistryName = ''
+- $ServiceBusNamespace = ''
 ```
 
 Set the default subscription:
 
-```sh
-az account set --subscription <subscription-id>
+```powershell
+az account set --subscription $SubscriptionID
 ```
 
 Create a resource group:
 
-```sh
-az group create --name <resource-group-name> --location <location>
+```powershell
+az group create --name $ResourceGroupName --location $Location
 ```
 
 ## 1. Create an AKS cluster and attach ACR
 
 Create an AKS cluster:
 
-```sh
-
-az feature register --namespace "Microsoft.ContainerService" --name "EnablePodIdentityPreview"
-
-az aks create --resource-group <resource-group-name> --name <aks-name> --node-count 3 --location <location> --node-vm-size Standard_D4ds_v5 --tier free --enable-pod-identity --network-plugin azure --generate-ssh-keys
+```powershell
+az aks create --resource-group $ResourceGroupName --name $AKSClusterName --node-count 3 --location $Location --node-vm-size Standard_D4ds_v5 --tier free --enable-pod-identity --network-plugin azure --generate-ssh-keys
 ```
 
 Create an Container Registry:
 
-```sh
-az acr create --name <acr-name> --resource-group <resource-group-name> --sku basic
+```powershell
+az acr create --name $ContainerRegistryName --resource-group $ResourceGroupName --sku basic
 ```
 
 Attach the Container Registry to AKS:
 
-```sh
-az aks update --name <aks-name> --resource-group <resource-group-name> --attach-acr <acr-name>
+```powershell
+az aks update --name $AKSClusterName --resource-group $ResourceGroupName --attach-acr $ContainerRegistryName
 ```
 
 Get the access credentials for the AKS cluster:
 
-```sh
-az aks get-credentials --resource-group <resource-group-name> --name <aks-name> --overwrite-existing
+```powershell
+az aks get-credentials --resource-group $ResourceGroupName --name $AKSClusterName --overwrite-existing
 ```
 
 Verify the connection to the cluster:
 
-```sh
+```powershell
 kubectl cluster-info
 ```
 
@@ -67,7 +75,7 @@ kubectl cluster-info
 
 Add a reference:
 
-```sh
+```powershell
 helm repo add dapr https://dapr.github.io/helm-charts/   
 helm repo update
 helm upgrade --install dapr dapr/dapr --namespace dapr-system --create-namespace
@@ -76,7 +84,7 @@ helm upgrade --install dapr-dashboard dapr/dapr-dashboard --namespace dapr-syste
 
 Verify if pods are running:
 
-```sh
+```powershell
 kubectl get pods -n dapr-system
 ```
 
@@ -84,13 +92,13 @@ kubectl get pods -n dapr-system
 
 #### To access the Dapr dashboard, run the following command
 
-```sh
+```powershell
 dapr dashboard -k
 ```
 
 #### Expected response
 
-```sh
+```powershell
 Dapr dashboard found in namespace: dapr-system
 Dapr dashboard available at http://localhost:8080
 ```
@@ -99,7 +107,7 @@ Dapr dashboard available at http://localhost:8080
 
 Add a reference :
 
-```sh
+```powershell
 helm repo add kedacore https://kedacore.github.io/charts
 helm repo update
 helm upgrade --install keda kedacore/keda -n keda-system --create-namespace
@@ -109,7 +117,7 @@ helm upgrade --install keda-add-ons-http kedacore/keda-add-ons-http -n keda-syst
 
 Verify if pods are running:
 
-```sh
+```powershell
 kubectl get pods -n keda-system
 ```
 
@@ -117,7 +125,7 @@ kubectl get pods -n keda-system
 
 In this project, we have 3 different options to configure the transport layer (choose one):
 
-- [Azure Service Bus](setup-infra-az-svcbus.md)
+- [Azure Service Bus](setup-infra-azsbus.md)
 - [Redis](setup-infra-redis.md)
 - [RabbitMq](setup-infra-rbmq.md)
 
@@ -129,7 +137,7 @@ In this project, we have 3 different options to configure the transport layer (c
 
 Follow these steps to remove all the apps, components and cloud resources created in this how-to guide.
 
-```sh
+```powershell
 helm uninstall keda-add-ons-http -n keda-system
 helm uninstall keda -n keda-system
 helm uninstall dapr -n dapr-system
@@ -137,8 +145,8 @@ helm uninstall dapr -n dapr-system
 
 Delete all Azure resources:
 
-```sh
-az aks delete --name <aks-name> --resource-group <resource-group-name>
-az acr delete --name <acr-name> --resource-group <resource-group-name>
-az group delete --name <resource-group-name>
+```powershell
+az aks delete --name $AKSClusterName --resource-group $ResourceGroupName
+az acr delete --name $ContainerRegistryName --resource-group $ResourceGroupName
+az group delete --name $ResourceGroupName
 ```

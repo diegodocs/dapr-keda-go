@@ -1,7 +1,7 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: az-svcbus-keda-scaler-consumer  
+  name: azsbus-keda-scaler-consumer  
 spec:
   scaleTargetRef:
     name: {{ .Values.consumer.name }}
@@ -12,17 +12,25 @@ spec:
   triggers:
   - type: azure-servicebus
     metadata:      
-      topicName: {{ .Values.svcbus.topic.name }}
-      subscriptionName: {{ .Values.svcbus.subscription.name }}      
-      namespace: {{ .Values.svcbus.namespace }}      
-      messageCount: {{ .Values.keda.messageCount | quote}}      
+      queueName: {{ .Values.svcbus.queue.name }}            
+      queueLength: {{ .Values.keda.queueLength | quote}}      
     authenticationRef:
-        name: az-svcbus-keda-auth
+        name: azsbus-keda-auth
 ---
 apiVersion: keda.sh/v1alpha1
 kind: TriggerAuthentication
 metadata:
-  name: az-svcbus-keda-auth
+  name: azsbus-keda-auth
 spec:
-  podIdentity:
-    provider: azure | azure-workload
+  secretTargetRef:
+  - parameter: connection
+    name: azsbus-secrets
+    key: connectionstring
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: azsbus-secrets
+type: Opaque
+stringData:
+  connectionstring: {{ .Values.svcbus.connectionString }}
