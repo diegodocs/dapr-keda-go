@@ -23,8 +23,8 @@ jobs:
   
     - name: 'Run Azure CLI commands'
       env:  
-          $ContainerRegistryName: acr${{ vars.NAME}}${{ vars.SUFFIX}}.azurecr.io        
-          $ImageName: consumer-app:$(date +%s)
+        ContainerRegistryName: acr${{ vars.NAME}}${{ vars.SUFFIX}}.azurecr.io        
+        ImageName: consumer-app:$(date +%s)
       run: |
           echo "ContainerRegistryName: ${{ env.ContainerRegistryName }}"
           echo "VAR2: acr${{ vars.NAME}}${{ vars.SUFFIX}}.azurecr.io"
