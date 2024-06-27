@@ -32,7 +32,7 @@ jobs:
           echo "SUFFIX: ${{ vars.SUFFIX }}"
           echo "ImageName: ${{ env.ImageName }}"
           echo "Version: ${{ env.GITHUB_RUN_NUMBER }}"
-          echo "Version2: ${{ GITHUB_RUN_NUMBER }}"
+          echo "Version2: ${GITHUB_RUN_NUMBER}"
     # - uses: actions/checkout@v4
     # - name: Build the Docker image
     #   run: |
