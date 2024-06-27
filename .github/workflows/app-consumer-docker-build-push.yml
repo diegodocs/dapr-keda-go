@@ -11,7 +11,7 @@ permissions:
       contents: read
       
 jobs: 
-  build-and-deploy:
+  build-and-package:
     runs-on: ubuntu-latest
     environment: dev
     steps:
@@ -24,9 +24,11 @@ jobs:
   
     - name: 'Run Azure CLI commands'
       run: |
-          az account show
-          az group list
-          pwd 
-    #- uses: actions/checkout@v4
-    #- name: Build the Docker image
-    #  run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+          echo ${{ env.CONTAINER_REGISTRY_NAME }}
+    # - uses: actions/checkout@v4
+    # - name: Build the Docker image
+    #   run: |
+    #       az acr login --name ${{ env.CONTAINER_REGISTRY_NAME }}
+    #       docker build . --file cmd/consumer/dockerfile --tag "${{ env.CONTAINER_REGISTRY_NAME }}/$ImageName" 
+    #   env:          
+    #       $ImageName: consumer-app:$(date +%s)
