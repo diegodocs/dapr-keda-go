@@ -25,13 +25,16 @@ jobs:
   
     - name: 'Run Azure CLI commands'
       run: |
-          echo "ACR NAME: ${{ vars.CONTAINER_REGISTRY_NAME }}"
-          echo "COUNT: acr${{ vars.NAME}}${{ vars.SUFFIX}}.azurecr.io"
+          echo "ContainerRegistryName: $ContainerRegistryName"
+          echo "VAR2: acr${{ vars.NAME}}${{ vars.SUFFIX}}.azurecr.io"
           echo "NAME: ${{ vars.NAME }}"
+          echo "SUFFIX: ${{ vars.SUFFIX }}"
+          echo "ImageName: $ImageName"
     # - uses: actions/checkout@v4
     # - name: Build the Docker image
     #   run: |
     #       az acr login --name ${{ env.CONTAINER_REGISTRY_NAME }}
     #       docker build . --file cmd/consumer/dockerfile --tag "${{ env.CONTAINER_REGISTRY_NAME }}/$ImageName" 
-    #   env:          
-    #       $ImageName: consumer-app:$(date +%s)
+      env:  
+          $ContainerRegistryName: acr${{ vars.NAME}}${{ vars.SUFFIX}}.azurecr.io        
+          $ImageName: consumer-app:$(date +%s)
