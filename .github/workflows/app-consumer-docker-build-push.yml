@@ -3,9 +3,7 @@ name: App-Consumer-Docker-Build-Push
 on:
   workflow_dispatch:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ "main" ]  
 
 permissions:
       id-token: write
@@ -29,7 +27,7 @@ jobs:
           echo "VAR2: acr${{ vars.NAME}}${{ vars.SUFFIX}}.azurecr.io"
           echo "NAME: ${{ vars.NAME }}"
           echo "SUFFIX: ${{ vars.SUFFIX }}"
-          echo "ImageName: $env.ImageName"
+          echo "ImageName: ${{ vars.ImageName }}"
     # - uses: actions/checkout@v4
     # - name: Build the Docker image
     #   run: |
