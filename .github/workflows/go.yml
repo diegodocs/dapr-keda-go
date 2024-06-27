@@ -21,11 +21,11 @@ jobs:
       with:
         go-version: '1.22.4'
 
-    - name: Build
+    - name: Go-Vet 
       run: go vet ./...
   
-    - name: Build
+    - name: Go-Build
       run: go build -v ./...
 
-    - name: Test
+    - name: Go-Test
       run: go test -v ./...
