@@ -24,15 +24,10 @@ jobs:
     - name: 'Run Azure CLI commands'
       env:  
         ContainerRegistryName: acr${{ vars.NAME}}${{ vars.SUFFIX}}.azurecr.io        
-        ImageName: consumer-app:$(date +%s)
-      run: |
-          echo "ContainerRegistryName: ${{ env.ContainerRegistryName }}"
-          echo "VAR2: acr${{ vars.NAME}}${{ vars.SUFFIX}}.azurecr.io"
-          echo "NAME: ${{ vars.NAME }}"
-          echo "SUFFIX: ${{ vars.SUFFIX }}"
+        ImageName: consumer-app:${GITHUB_RUN_NUMBER}
+      run: |          
+          echo "VAR2: acr${{ vars.NAME}}${{ vars.SUFFIX}}.azurecr.io"          
           echo "ImageName: ${{ env.ImageName }}"
-          echo "Version: ${{ env.GITHUB_RUN_NUMBER }}"
-          echo "Version2: ${GITHUB_RUN_NUMBER}"
     # - uses: actions/checkout@v4
     # - name: Build the Docker image
     #   run: |
