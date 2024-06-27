@@ -25,11 +25,11 @@ jobs:
   
     - name: 'Run Azure CLI commands'
       run: |
-          echo "ContainerRegistryName: $ContainerRegistryName"
+          echo "ContainerRegistryName: $env.ContainerRegistryName"
           echo "VAR2: acr${{ vars.NAME}}${{ vars.SUFFIX}}.azurecr.io"
           echo "NAME: ${{ vars.NAME }}"
           echo "SUFFIX: ${{ vars.SUFFIX }}"
-          echo "ImageName: $ImageName"
+          echo "ImageName: $env.ImageName"
     # - uses: actions/checkout@v4
     # - name: Build the Docker image
     #   run: |
