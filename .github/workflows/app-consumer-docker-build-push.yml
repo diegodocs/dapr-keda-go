@@ -24,7 +24,9 @@ jobs:
   
     - name: 'Run Azure CLI commands'
       run: |
-          echo ${{ env.CONTAINER_REGISTRY_NAME }}
+          echo "ACR NAME: ${{ env.CONTAINER_REGISTRY_NAME }}"
+          echo "COUNT: ${{ env.COUNT }}"
+          echo "NAME: ${{ env.NAME }}"
     # - uses: actions/checkout@v4
     # - name: Build the Docker image
     #   run: |
