@@ -1,5 +1,9 @@
 name: App-Consumer-Docker-Build-Push
 
+env:  
+  ContainerRegistryName: acr${{ vars.NAME}}${{ vars.SUFFIX}}.azurecr.io        
+  ImageName: consumer-app:1.0.0.${GITHUB_RUN_NUMBER}
+
 on:
   workflow_dispatch:
   push:
@@ -21,10 +25,7 @@ jobs:
     #       tenant-id: ${{ secrets.AZURE_TENANT_ID }}
     #       subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
   
-    - name: 'Run Azure CLI commands'
-      env:  
-        ContainerRegistryName: acr${{ vars.NAME}}${{ vars.SUFFIX}}.azurecr.io        
-        ImageName: consumer-app:1.0.0.${GITHUB_RUN_NUMBER}
+    - name: 'Run Azure CLI commands'      
       run: |          
           echo "ContainerRegistryName: ${{ env.ContainerRegistryName }}"          
           echo "ImageName: ${{ env.ImageName }}"
