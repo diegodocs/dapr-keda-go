@@ -1,6 +1,6 @@
 # Planting Trees App
 
-[![Go-Build-Test](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/go.yml/badge.svg?branch=main)](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/go.yml)
+[![App-Go-Build-Test](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/app-go-build-test.yml/badge.svg?branch=main)](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/app-go-build-test.yml)
 [![Dependency-Review](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/dependency-review.yml)
 
 ## Summary
