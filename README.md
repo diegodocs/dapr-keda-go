@@ -1,45 +1,48 @@
 # Planting Trees App
 
+<img src="./docs/plant-tree.jpg" width="250px" align="right" />
+
 [![App-Go-Build-Test](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/app-go-build-test.yml/badge.svg?branch=main)](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/app-go-build-test.yml)
 [![Dependency-Review](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/dependency-review.yml)
 
 ## Summary
 
+<img src="https://keda.sh/img/logos/keda-horizontal-color.png" width="250px" />
+<img src="https://dapr.io/images/dapr.svg" width="200px" />
+
 This project cover concepts about Distributed Architecture combining follow technologies:
 
 - Go - Producer/Consumer App
-- Dapr
-- Keda
+- Distributed Application Runtime - DAPR
+- Kubernetes Event Driven Autoscaling - KEDA
 - Azure Kubernetes Service (AKS)
 - Azure Container Registry (ACR)
 - Azure Service Bus  (ASB)
-- RabbitMq:(exchange, binding and queues)
+- RabbitMQ:(exchange, binding and queues)
 - Redis
 
 ## Development Tools
 
-- [Go 1.22.3](https://go.dev/dl/)
+- [Go SDK](https://go.dev/dl/)
 - [Azure CLI](https://learn.microsoft.com/pt-br/cli/azure/install-azure-cli)
 - [Dapr CLI](https://docs.dapr.io/getting-started/install-dapr-cli/)
 - [Kubectl](https://kubernetes.io/pt-br/docs/tasks/tools/)
 - [Helm CLI](https://github.com/helm/helm)
 - [GIT bash](https://git-scm.com/downloads)
 
-## Setup your environment
+## Deploying Infra and Apps
 
-- [Detailed steps to setup your environment](./docs/setup-infra.md)
+- [Setup your environment(infra)](./docs/setup-infra.md)
+- [Deploying  your applications on AKS](setup-app.md)
 
-## Distributed Application Runtime - DAPR
+You can see the folder `.github/workflows` the pipelines (actions) for build and deploy:
 
-![dapr](https://dapr.io/images/dapr.svg)
+- [Configuring a federated credential and connect GitHub Actions to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure)
 
-**[DAPR - Pros/Cons](./docs/dapr-pros-cons.md)**
+## References
 
-## Kubernetes Event Driven Autoscaling - KEDA
-
-![keda](https://keda.sh/img/logos/keda-horizontal-color.png)
-
-**[KEDA  - Pros/Cons](./docs/keda-pros-cons.md)**
+- [DAPR - Pros/Cons](./docs/dapr-pros-cons.md)
+- [KEDA  - Pros/Cons](./docs/keda-pros-cons.md)
 
 ## You can find in this repository
 

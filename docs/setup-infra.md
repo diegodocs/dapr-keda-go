@@ -121,7 +121,7 @@ Verify if pods are running:
 kubectl get pods -n keda-system
 ```
 
-## 3. Setup Transport Layer with Dapr and Keda
+## 4. Setup Transport Layer with Dapr and Keda
 
 In this project, we have 3 different options to configure the transport layer (choose one):
 
@@ -129,15 +129,7 @@ In this project, we have 3 different options to configure the transport layer (c
 - [Redis](setup-infra-redis.md)
 - [RabbitMq](setup-infra-rbmq.md)
 
-## 3. Deploying  your applications on AKS
-
-- [Manual steps to deploy Apps](setup-app.md)
-
-You can see the folder `.github/workflows` the pipelines (actions) for build and deploy:
-
-- [Configure a federated credential to connect GitHub Actions to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure)
-
-## 4. Clean-up
+## 5. Clean-up
 
 Follow these steps to remove all the apps, components and cloud resources created in this how-to guide.
 
