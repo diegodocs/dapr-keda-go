@@ -5,10 +5,7 @@
 [![App-Go-Build-Test](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/app-go-build-test.yml/badge.svg?branch=main)](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/app-go-build-test.yml)
 [![Dependency-Review](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/dependency-review.yml)
 
-## Summary
-
-<img src="https://keda.sh/img/logos/keda-horizontal-color.png" width="250px" />
-<img src="https://dapr.io/images/dapr.svg" width="200px" />
+### Summary
 
 This project cover concepts about Distributed Architecture combining follow technologies:
 
@@ -20,6 +17,9 @@ This project cover concepts about Distributed Architecture combining follow tech
 - Azure Service Bus  (ASB)
 - RabbitMQ:(exchange, binding and queues)
 - Redis
+
+<img src="https://keda.sh/img/logos/keda-horizontal-color.png" width="250px" />
+<img src="https://dapr.io/images/dapr.svg" width="200px" />
 
 ## Development Tools
 
