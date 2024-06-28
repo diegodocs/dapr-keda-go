@@ -2,7 +2,7 @@ name: App-Consumer-Docker-Build-Push
 
 env:  
   ContainerRegistryName: acr${{ vars.NAME}}${{ vars.SUFFIX}}.azurecr.io        
-  ImageName: consumer-app:1.0.0.${GITHUB_RUN_NUMBER}
+  ImageTag: consumer-app:1.0.0.${GITHUB_RUN_NUMBER}
   DockerfilePath: cmd/consumer/dockerfile
 
 on:
@@ -25,10 +25,16 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
+    
+    - name: Login Container Registry
       run: |
           az acr login --name ${{ env.ContainerRegistryName }}
-          docker build . --file ${{ env.DockerfilePath }} --tag "${{ env.ContainerRegistryName }}/${{ env.ImageName }}" 
+
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: |          
+          docker build . --file ${{ env.DockerfilePath }} --tag "${{ env.ContainerRegistryName }}/${{ env.ImageTag }}"          
       
+    - name: Push the Docker image
+      run: |          
+          docker push "${{ env.ContainerRegistryName }}/${{ env.ImageTag }}" 
