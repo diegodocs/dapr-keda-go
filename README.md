@@ -16,18 +16,6 @@ This project cover concepts about Distributed Architecture combining follow tech
 - RabbitMq:(exchange, binding and queues)
 - Redis
 
-## Distributed Application Runtime - DAPR
-
-![dapr](https://docs.dapr.io/images/overview.png)
-
-**[DAPR - Pros/Cons](./docs/dapr-pros-cons.md)**
-
-## Kubernetes Event Driven Autoscaling - KEDA
-
-![keda](https://keda.sh/img/keda-arch.png)
-
-**[KEDA  - Pros/Cons](./docs/keda-pros-cons.md)**
-
 ## Development Tools
 
 - [Go 1.22.3](https://go.dev/dl/)
@@ -41,13 +29,17 @@ This project cover concepts about Distributed Architecture combining follow tech
 
 - [Detailed steps to setup your environment](./docs/setup-infra.md)
 
-## Restore, Build and Test
+## Distributed Application Runtime - DAPR
 
-```powershell
-go vet ./...
-go test ./...
-go build ./...
-```
+![dapr](https://dapr.io/images/dapr.svg)
+
+**[DAPR - Pros/Cons](./docs/dapr-pros-cons.md)**
+
+## Kubernetes Event Driven Autoscaling - KEDA
+
+![keda](https://keda.sh/img/logos/keda-horizontal-color.png)
+
+**[KEDA  - Pros/Cons](./docs/keda-pros-cons.md)**
 
 ## You can find in this repository
 

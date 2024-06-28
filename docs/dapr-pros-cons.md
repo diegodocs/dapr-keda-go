@@ -1,5 +1,7 @@
 # Backend integration using (DAPR) Distributed Application Runtime
 
+![dapr](https://docs.dapr.io/images/overview.png)
+
 The [Dapr](https://github.com/dapr/community/blob/master/README.md) is a portable, serverless, event-driven runtime that makes it easy for developers to build resilient, stateless and stateful microservices that run on the cloud and edge and embraces the diversity of languages and developer frameworks.
 
 Dapr provides a set of APIs that run as a sidecar process next to your application code, and offer various capabilities such as service invocation, state management, pub/sub, bindings, actors, observability, and secrets.

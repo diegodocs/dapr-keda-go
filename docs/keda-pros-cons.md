@@ -2,7 +2,7 @@
 
 It's a Cloud Native Computing Foundation (CNCF) graduated project.
 
-![](https://keda.sh/img/keda-arch.png)
+![keda](https://keda.sh/img/keda-arch.png)
 
 ## Pros
 
