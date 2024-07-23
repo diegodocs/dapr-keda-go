@@ -33,7 +33,7 @@ This project cover concepts about Distributed Architecture combining follow tech
 ## Deploying Infra and Apps
 
 - [Setup your environment(infra)](./docs/setup-infra.md)
-- [Deploying  your applications on AKS](setup-app.md)
+- [Deploying  your applications on AKS](./docs/setup-app.md)
 
 You can see the folder `.github/workflows` the pipelines (actions) for build and deploy:
 
