@@ -29,6 +29,7 @@ This project cover concepts about Distributed Architecture combining follow tech
 - [Kubectl](https://kubernetes.io/pt-br/docs/tasks/tools/)
 - [Helm CLI](https://github.com/helm/helm)
 - [GIT bash](https://git-scm.com/downloads)
+- [Visual Studio Code](https://code.visualstudio.com/download)
 
 ## Deploying Infra and Apps
 
