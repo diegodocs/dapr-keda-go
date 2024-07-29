@@ -3,7 +3,6 @@
 <img src="./docs/plant-tree.png" width="250px" align="right" />
 
 [![App-Go-Build-Test](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/app-go-build-test.yml/badge.svg?branch=main)](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/app-go-build-test.yml)
-[![Dependency-Review](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/dependency-review.yml)
 
 ### Summary
 
@@ -34,7 +33,7 @@ This project cover concepts about Distributed Architecture combining follow tech
 ## Deploying Infra and Apps
 
 - [Setup your environment(infra)](./docs/setup-infra.md)
-- [Deploying  your applications on AKS](setup-app.md)
+- [Deploying  your applications on AKS](./docs/setup-app.md)
 
 You can see the folder `.github/workflows` the pipelines (actions) for build and deploy:
 
