@@ -1,10 +1,10 @@
-# Planting Trees App
+# Plant Trees App
 
 <img src="./docs/plant-tree.png" width="250px" align="right" />
 
 [![App-Go-Build-Test](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/app-go-build-test.yml/badge.svg?branch=main)](https://github.com/diegodocs/go-dapr-plant-trees/actions/workflows/app-go-build-test.yml)
 
-### Summary
+## Summary
 
 This project cover concepts about Distributed Architecture combining follow technologies:
 
@@ -24,7 +24,7 @@ This project cover concepts about Distributed Architecture combining follow tech
 
 - [Go SDK](https://go.dev/dl/)
 - [Azure CLI](https://learn.microsoft.com/pt-br/cli/azure/install-azure-cli)
-- [Dapr CLI](https://docs.dapr.io/getting-started/install-dapr-cli/)
+- [DAPR CLI](https://docs.dapr.io/getting-started/install-dapr-cli/)
 - [Kubectl](https://kubernetes.io/pt-br/docs/tasks/tools/)
 - [Helm CLI](https://github.com/helm/helm)
 - [GIT bash](https://git-scm.com/downloads)

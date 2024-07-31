@@ -29,7 +29,7 @@ type PlantedTreeEvent struct {
 
 func plantTree(numberOfTrees int, handler *Handler) {
 
-	// Publish events using Dapr pubsub
+	// Publish events using DAPR pubsub
 	for i := 1; i <= numberOfTrees; i++ {
 
 		event := PlantedTreeEvent{Id: handler.EventsProcessed}
@@ -53,10 +53,10 @@ func plantTree(numberOfTrees int, handler *Handler) {
 
 func main() {
 	log.Println("Producer App Started ...")
-	// Create a new client for Dapr using the SDK
+	// Create a new client for DAPR using the SDK
 	client, err := dapr.NewClient()
 	if err != nil {
-		log.Fatalln("Error to create instace of Dapr Client: ", err)
+		log.Fatalln("Error to create instace of DAPR Client: ", err)
 	}
 	defer client.Close()
 

@@ -21,7 +21,7 @@ Verify if pods are running:
 kubectl get pods -n redis-system
 ```
 
-## 2. Setup Dapr and Keda Dependencies
+## 2. Setup DAPR and KEDA Dependencies
 
 Add a reference:
 

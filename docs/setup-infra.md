@@ -7,8 +7,8 @@ Expected Results:
   - ACR - Azure Container Registry
 - Resources installed on AKS via Helm-Charts
   - RabbitMq cluster
-  - Dapr
-  - Keda
+  - DAPR
+  - KEDA
 
 Login to Azure using the CLI:
 
@@ -71,7 +71,7 @@ Verify the connection to the cluster:
 kubectl cluster-info
 ```
 
-## 2. Setup Dapr on AKS
+## 2. Setup DAPR on AKS
 
 Add a reference:
 
@@ -88,9 +88,9 @@ Verify if pods are running:
 kubectl get pods -n dapr-system
 ```
 
-### Dapr Dashboard
+### DAPR Dashboard
 
-#### To access the Dapr dashboard, run the following command
+#### To access the DAPR dashboard, run the following command
 
 ```powershell
 dapr dashboard -k
@@ -99,11 +99,11 @@ dapr dashboard -k
 #### Expected response
 
 ```powershell
-Dapr dashboard found in namespace: dapr-system
-Dapr dashboard available at http://localhost:8080
+DAPR dashboard found in namespace: dapr-system
+DAPR dashboard available at http://localhost:8080
 ```
 
-## 3. Add Keda to AKS
+## 3. Add KEDA to AKS
 
 Add a reference :
 
@@ -121,7 +121,7 @@ Verify if pods are running:
 kubectl get pods -n keda-system
 ```
 
-## 4. Setup Transport Layer with Dapr and Keda
+## 4. Setup Transport Layer with DAPR and KEDA
 
 In this project, we have 3 different options to configure the transport layer (choose one):
 

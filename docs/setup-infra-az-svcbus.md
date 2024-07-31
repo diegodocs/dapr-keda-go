@@ -37,7 +37,7 @@ az servicebus queue authorization-rule create --resource-group $ResourceGroupNam
 
 ```
 
-## 2. Setup Dapr and Keda Dependencies
+## 2. Setup DAPR and KEDA Dependencies
 
 Add a reference:
 

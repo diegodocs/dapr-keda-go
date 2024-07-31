@@ -8,31 +8,31 @@ Expected Results:
 
 ## 1. Running Applications Locally
 
-### Initialize Dapr locally
+### Initialize DAPR locally
 
 ```powershell
 dapr init
 ```
 
-### Runing consumer app
+### Running consumer app
 
 ```powershell
 dapr run --app-id consumer1 --app-protocol http --dapr-http-port 3500 --app-port 8080  --resources-path .dapr/resources -- go run ./cmd/consumer
 ```
 
-### Runing producer app
+### Running producer app
 
 ```powershell
 dapr run --app-id producer1 --app-protocol http --dapr-http-port 3501 --resources-path .dapr/resources -- go run ./cmd/producer
 ```
 
-### or you can run on unique terminal:
+### or you can run on unique terminal
 
 ```powershell
 dapr run -f ./dapr.yaml
 ```
 
-### You can also initialize Dapr on the provisioned AKS cluster (just for debugging purposal)
+### You can also initialize DAPR on the provisioned AKS cluster (just for debugging purpose)
 
 ```powershell
 dapr init --kubernetes --wait
@@ -57,7 +57,7 @@ docker push "$ContainerRegistryName.azurecr.io/consumer-app:1.0.0"
 docker push "$ContainerRegistryName.azurecr.io/producer-app:1.0.0" 
 ```
 
-### 2. Setup Dapr and Keda Dependencies
+### 2. Setup DAPR and KEDA Dependencies
 
 ```powershell
 helm upgrade --install app .helmcharts/app -n tree --create-namespace

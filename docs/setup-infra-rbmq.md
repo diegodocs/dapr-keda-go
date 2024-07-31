@@ -21,7 +21,7 @@ Verify if pods are running:
 kubectl get pods -n rabbitmq-system
 ```
 
-## 2. Setup Dapr and Keda Dependencies
+## 2. Setup DAPR and KEDA Dependencies
 
 ```powershell
 helm upgrade --install rbmq .helmcharts/rbmq -n tree --create-namespace
