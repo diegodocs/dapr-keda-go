@@ -46,7 +46,9 @@ Create an AKS cluster:
 ```powershell
 az aks create --resource-group $ResourceGroupName --name $AKSClusterName --node-count 3 --location $Location --node-vm-size Standard_D4ds_v5 --tier free --enable-pod-identity --network-plugin azure --generate-ssh-keys
 ```
-
+- enabling [DAPR AKS Extension](https://learn.microsoft.com/pt-br/azure/aks/dapr?tabs=cli)
+- enabling [KEDA AKS Addon](https://learn.microsoft.com/pt-br/azure/aks/keda-deploy-add-on-cli)
+- 
 Create an Container Registry:
 
 ```powershell

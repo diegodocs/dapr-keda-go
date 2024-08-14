@@ -89,5 +89,5 @@ kubectl get pod -l app=consumer1 -n tree
 ## 4. Clean-up
 
 ```powershell
-helm uninstall app - tree
+helm uninstall app -n tree
 ```
