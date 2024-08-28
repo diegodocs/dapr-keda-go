@@ -26,8 +26,6 @@ In this article, we going to focus to setup DAPR, KEDA on ARO (Azure RedHat Open
 
 ## Deploying Infrastructure
 
-- [click here for complete step-by-step](https://github.com/diegodocs/dapr-keda-go/docs/setup-infra.md)
-
 Login to Azure using the CLI:
 
 ```powershell
@@ -213,7 +211,7 @@ Verify if pods are running:
 kubectl get pods -n tree
 ```
 
-### 4. Testing the application
+### Testing the application
 
 ```powershell
 # Reviewing Logs
