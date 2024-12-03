@@ -32,6 +32,8 @@ spec:
           ports:
             - containerPort: {{ .Values.producer.port }}
               name: app-http
+      nodeSelector:
+        kubernetes.azure.com/agentpool: "workload"
 ---
 apiVersion: v1
 kind: Service

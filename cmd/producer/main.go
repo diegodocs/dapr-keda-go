@@ -56,7 +56,7 @@ func main() {
 	// Create a new client for DAPR using the SDK
 	client, err := dapr.NewClient()
 	if err != nil {
-		log.Fatalln("Error to create instace of DAPR Client: ", err)
+		log.Fatalln("Error to create instance of DAPR Client: ", err)
 	}
 	defer client.Close()
 

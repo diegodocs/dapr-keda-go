@@ -44,7 +44,9 @@ az group create --name $ResourceGroupName --location $Location
 Create an AKS cluster:
 
 ```powershell
-az aks create --resource-group $ResourceGroupName --name $AKSClusterName --node-count 3 --location $Location --node-vm-size Standard_D4ds_v5 --tier free --enable-pod-identity --network-plugin azure --generate-ssh-keys
+az aks create --resource-group $ResourceGroupName --name $AKSClusterName --node-count 1 --location $Location --node-vm-size Standard_D4ds_v5 --tier free --enable-pod-identity --generate-ssh-keys --nodepool-name system --network-plugin azure --enable-cluster-autoscaler --min-count 1 --max-count 3 --zones 2
+
+az aks nodepool add --resource-group $ResourceGroupName --name workload --cluster-name $AKSClusterName --node-osdisk-type Ephemeral --node-osdisk-size 48 --mode user --node-count 1 --enable-cluster-autoscaler --min-count 1 --max-count 3 --zones 2
 ```
 
 - enabling [DAPR AKS Extension](https://learn.microsoft.com/pt-br/azure/aks/dapr?tabs=cli)

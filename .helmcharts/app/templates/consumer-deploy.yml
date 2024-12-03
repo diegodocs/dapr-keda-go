@@ -32,3 +32,5 @@ spec:
           ports:
             - containerPort: {{ .Values.consumer.port }}
               name: app-http
+      nodeSelector:
+        kubernetes.azure.com/agentpool: "workload"

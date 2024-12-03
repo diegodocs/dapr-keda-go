@@ -24,17 +24,13 @@ Get ConnectionString value:
 ```powershell
 az servicebus namespace authorization-rule keys list --resource-group $ResourceGroupName --namespace-name $ServiceBusNamespace --name RootManageSharedAccessKey --query primaryConnectionString --output tsv
 
-
 Replace text '$ServiceBusEndPoint' by value above
-
 ```
 
 Add authorization to KEDA monitor the queue:
 
 ```powershell
 az servicebus queue authorization-rule create --resource-group $ResourceGroupName --namespace-name $ServiceBusNamespace --queue-name events --name keda-monitor --rights Listen
-
-
 ```
 
 ## 2. Setup DAPR and KEDA Dependencies
