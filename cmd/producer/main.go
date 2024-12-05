@@ -19,12 +19,34 @@ type Handler struct {
 	EventsProcessed int
 }
 
-type CarbonFree struct {
+type PlantCommand struct {
 	NumberOfTrees int `json:"numberOfTrees"`
 }
 
 type PlantedTreeEvent struct {
 	Id int `json:"id"`
+}
+
+func main() {
+	log.Println("Producer App Started ...")
+	// Create a new client for DAPR using the SDK
+	client, err := dapr.NewClient()
+	if err != nil {
+		log.Fatalln("Error to create instance of DAPR Client: ", err)
+	}
+	defer client.Close()
+
+	handler := &Handler{Client: client, EventsProcessed: 1}
+	http.Handle("/plant", handler)
+	http.ListenAndServe(":8081", nil)
+}
+
+func (handler *Handler) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
+
+	var command PlantCommand
+	_ = json.NewDecoder(request.Body).Decode(&command)
+	plantTree(command.NumberOfTrees, handler)
+
 }
 
 func plantTree(numberOfTrees int, handler *Handler) {
@@ -46,29 +68,6 @@ func plantTree(numberOfTrees int, handler *Handler) {
 		}
 
 		log.Println("Event Published - Id:", event.Id)
-		//time.Sleep(time.Second / 2)
 		handler.EventsProcessed++
 	}
-}
-
-func main() {
-	log.Println("Producer App Started ...")
-	// Create a new client for DAPR using the SDK
-	client, err := dapr.NewClient()
-	if err != nil {
-		log.Fatalln("Error to create instance of DAPR Client: ", err)
-	}
-	defer client.Close()
-
-	handler := &Handler{Client: client, EventsProcessed: 1}
-	http.Handle("/plant", handler)
-	http.ListenAndServe(":8081", nil)
-}
-
-func (handler *Handler) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
-
-	var carbon CarbonFree
-	_ = json.NewDecoder(request.Body).Decode(&carbon)
-	plantTree(carbon.NumberOfTrees, handler)
-
 }
