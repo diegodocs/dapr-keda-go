@@ -1,4 +1,4 @@
-FROM golang:1.23 as builder
+FROM golang:1.24 as builder
 
 ARG TARGETOS
 ARG TARGETARCH
@@ -12,6 +12,6 @@ RUN go mod download
 COPY ./cmd/producer  ./cmd/producer
 RUN CGO_ENABLED=0 GOOS=linux GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o main -v -mod=readonly ./cmd/producer 
 
-FROM alpine:3.21.0
+FROM alpine:3.21
 COPY --from=builder /app/main /main
 CMD ["/main"]

@@ -47,6 +47,14 @@ You can see the folder `.github/workflows` the pipelines (actions) for build and
 - [GIT bash](https://git-scm.com/downloads)
 - [Visual Studio Code](https://code.visualstudio.com/download)
 
+## Running Go App Locally
+
+```powershell
+go get -u ./...
+go build -v ./...
+go test -v ./...
+```
+
 ## You shouldn't find
 
 - `src` directory (considering is not standard for Go projects)
