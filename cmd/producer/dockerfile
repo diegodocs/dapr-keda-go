@@ -12,6 +12,6 @@ RUN go mod download
 COPY ./cmd/producer  ./cmd/producer
 RUN CGO_ENABLED=0 GOOS=linux GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o main -v -mod=readonly ./cmd/producer 
 
-FROM alpine:3.21
+FROM alpine:3.23.2
 COPY --from=builder /app/main /main
 CMD ["/main"]
