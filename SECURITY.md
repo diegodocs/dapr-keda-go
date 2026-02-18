@@ -82,7 +82,7 @@ This document outlines the security improvements implemented in this project.
 
 1. **Up-to-date Dependencies**
    - All dependencies updated to latest versions
-   - Go toolchain upgraded to 1.24.10
+   - Go toolchain upgraded to 1.26.0
    - Regular dependency updates recommended
 
 2. **Vulnerability Scanning**

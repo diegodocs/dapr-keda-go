@@ -1,8 +1,8 @@
 module plant-trees-app
 
-go 1.24.9
+go 1.26
 
-toolchain go1.24.10
+toolchain go1.26.0
 
 require github.com/dapr/go-sdk v1.13.0
 
