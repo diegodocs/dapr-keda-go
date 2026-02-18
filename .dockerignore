@@ -1,0 +1,45 @@
+# Git
+.git
+.gitignore
+.github
+
+# Documentation
+*.md
+docs/
+articles/
+
+# Tests
+*_test.go
+tests/
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+bin/
+dist/
+
+# Kubernetes/Helm
+.helmcharts
+*.yaml
+!go.yaml
+dapr.yaml
+
+# CI/CD
+.github/
+
+# Temporary files
+*.log
+*.tmp
+tmp/

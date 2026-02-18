@@ -3,15 +3,31 @@ FROM golang:1.24.10-alpine3.21 as builder
 ARG TARGETOS
 ARG TARGETARCH
 
-USER 0
+# Install security updates
+RUN apk --no-cache add ca-certificates && \
+    apk --no-cache upgrade
+
 WORKDIR /app
 
 COPY go.* ./
-RUN go mod download
+RUN go mod download && go mod verify
 
 COPY ./cmd/producer  ./cmd/producer
-RUN CGO_ENABLED=0 GOOS=linux GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o main -v -mod=readonly ./cmd/producer 
+RUN CGO_ENABLED=0 GOOS=linux GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o main -v -mod=readonly -ldflags="-s -w" ./cmd/producer 
 
 FROM alpine:3.21
-COPY --from=builder /app/main /main
-CMD ["/main"]
+
+# Install security updates and ca-certificates
+RUN apk --no-cache add ca-certificates && \
+    apk --no-cache upgrade && \
+    addgroup -g 1000 appgroup && \
+    adduser -D -u 1000 -G appgroup appuser
+
+WORKDIR /app
+
+COPY --from=builder --chown=appuser:appgroup /app/main /app/main
+
+# Use non-root user
+USER appuser
+
+CMD ["/app/main"]
